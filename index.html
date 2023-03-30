@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- bootstrap files -->
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
+    <!--    input number spinner-->
+    <link rel="stylesheet" href="css/jquery.nice-number.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <!-- main style file -->
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+   <div class="preloader">
+        <div class="preloader__content">
+
+        </div>
+    </div>
+    <header>
+        <div class="top-row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-2 col-md-10 offset-md-2">
+                        <div class="row__wrapper">
+                            <div class="row__item">
+                                <a href="#" class="gray">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="27" viewBox="0 0 26 27">
+                                        <image id="shopping-cart" width="26" height="27" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAbCAYAAABiFp9rAAACHklEQVRIieXWy6tNURwH8M/17BIRKWVCklehpBzilDAxEGoP5FHXgDJiokz8A2KmFMqrewxMDEU7ao88B6RwJG53wugSN660snbt9j7n3Jdr4lurtfZv/9b+rt9vfdf67a6NvVvfoB8XcQuDRoEsSUfkPAnXsRxX0YezWFLxHCcC0Rkswn68xAn0TgSRmK6b2ILnmFbx/EtEE44pbQhW4gmasb3Fuzh+jx+VGcOgHdG32DZhb+ndL3zIF1Fr1JuFBTWzJP1U+RqCvMu2Z7FfG/vuqMJiW1wYd5fmDxSJYyYetYuoHN2L2FphYYk4bxuwOwSDoZEQdUSWpP3xwGdlv1qjPj2e030TqrosScOx+epfyvv/IZpcsYwdXZ2IlmFVxTpK1Br1udiMj+3kHS7Vx3g6XH2qNeoVWyErqzEHPe0i6htLESxhCA+wK0vSy+0iCvfVwYq1BUZTYcsIUcyuWMeJVhE9xEmcRgM/Kx4FdNijgSxJP+cPrW7vsHl3sb4ydfQI99+BLEmbrYjESI/gQhRG+EOqYWeM+HZlxh+cwoLo/wXH8RprWqVOTNfUOD6Ee1GuzSj987ljLoZaoz4L53AjS9Kj0fY9bsGKVmLIkZfr+bEPBW5Ghz0Lcg7Vd17Blo8H26UuJ3iFmbiDdVgaZX+tHFGM4AoOx70JqduB+1mSbusUUThLQVLh0G2PK+4pkrTAsfgDGipuWNgl7IHf82WLNM/jndgAAAAASUVORK5CYII=" />
+                                    </svg>
+
+                                    <p>Корзина пуста</p>
+                                </a>
+                            </div>
+                            <div class="row__item">
+                                <a href="#" class="gray">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="26" viewBox="0 0 26 26">
+                                        <image id="clock_1_" data-name="clock (1)" width="26" height="26" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAACyklEQVRIibWWW4iNURTHf/OZRjGImEmJJJe8kEv4hO9pNOXy4LLLpZRxiZIHEcqlxr1QlJQMCvNJJCRxspV2KS8ybkNeeHKNYSbC0RrrcM75vnN8c/F/Oaf9rb3+e6299n+tkkn10/gH+gOzgMnAMKA38B14BzwGbgNXnLGfirkpRjQK2ArMBjx13qgEXYAKYIj4AFqAU0CtM/ZVxFMBoq7AbmANkAbqgTrgDvA1z7YHUA0sBaqUcDNw0Bmbzjb08jb2AyywFkgBI4BF+j+fRNDkjD3njJ2uqX0B7JfD+WFQVoioHLgGTAS2A7L5ecQ1DNYD5cAZ64CxwFlgPnDGD4OSOKIjargJ2KZpi4NEfCJmXcgk6oXAaWAOsDGfqFpTdB7YFfGQi15A98jqX7K03tl9KSY/DIZmiCS8ncAXYHVkZzugkdUAZXoNrURyiaOBQ8DrziDSyO4Bl4F5fhhUCtFc/XYyYt1xHAdK5S0K0VTgJfDkPxCltKimeCorDyImnQBnbJO+reGeVtDbNriVE3aLrBaG+O7jZW1OirvAeJWpJJA7+iFE74EBbSAywC1gQ0KySqlmIWpQpc7XvUL4CMzIkPlhUJDMD4MKDeKhp5LSVzUuKZrzyGoL7JupvylPRVCwMmJWHBmyG9qz4rBMFB64Wqrv5zqwANirqUxM5oytiqz+TpuQTwD2OGObM/eyTn/rVJ86BL2bo8AbPfyfAmjQ1jAOOKatul3ww6BcNU6qbYUzVqq6tcYz2AGMBBZrE1wCFB04YtI1ELikIr3FGXsx8y2bKK0kn/USx2hKLwA/I15zCSTdy7XdiNKsd8buy7aJG07QLnlAW3ajdtSbmuIWtZEGKCeXpin28l6earpkBMtBsXFLHK2SjcCgrHWJWCLILhrppodl5HLGfotzlmSAlA4ss4QvKgz0FO0CPgCP5ME7Y58V9QD8AmJ6vdgNiOKhAAAAAElFTkSuQmCC" />
+                                    </svg>
+                                    <span class="item__text-block">
+                                        <span class="block__text1">
+                                            Время работы с 9:00 до 21:00
+                                        </span>
+                                        <span class="block__text2">
+                                            Online - заявки принимаем круглосуточно
+                                        </span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="row__item">
+                                <a href="#" class="gray">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 25 25">
+                                        <image id="telephone" width="25" height="25" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAADQElEQVRIiZXWa6ilYxQH8J/tOnRcRs4kGXKPmDBitpjXuGu+TNFLySVFuZVxi3wjhimFXPJJUebNxDBMcxGv23YyGkmSy0w44sSHcYlxjZazjrNnv/vsOf612z3vu571X8961vqvd7t5y+YbgCEswnk4HrOxE37HF9iAl/Bsp6x/nsrNVCQzcDMWYxesw1vYiF/z2aFo40xswf1Y2inrLdMhmYNnMAv34FH80AhjEnvhKtyOr1F2yvr9boNWz4YFGfEojsCSbRDolPXmTlkvSfsgeaNdFQumIjkWL+B5nI1vsD327xNMA52yDoJzsBIr2lUxp5dk10zRCC7Bn9gHb+NLvIY9Gp6bp4qCuAzvhr92VczoJrkNe+Ni/IU98Qpm4nTsi7XTJPoj/czK4vmXZHdcj3sxlrZXYxhFkhUZxHMNr32QqYuiWdyuiqEgOT9r/5Eu88MyVV/lOv7vxGlZvtPBY2m7qJWNtgY/dm2MSA7pWkc/PIinsk+mc5rv8XL4D5Lj4lmPzSochaNzfRc+xxUNb4PxJuYGyQHY1GMavfJhFkTgSRyZjfp/EAoxu5WX/1PPxr+zgy/Ke3giU7oq5WQyj1UxNIA0SnrHVpZsP8NozOV5iuEk3JQ9c1L21oq4y3ZVvNquin7lHTa/tFJND268HseVKX4r88Rn4J3M9Xs4GRfm6db2IYrno7FxPU5puB/HZpyb0rIuIwvpvxyfhtZ1yrrKPtovJakbUTzrg+TFlOuZDYpxfIZTUwU2pG2kcCE+MF6uYXMd5rerYrhr7024sZVdHAPn2ob7SUTUJ4bCZgHEXcydeNuuiuiph0KzOmX97cTzTlmPxnpintyBW7NMRxsUWyMU+u7sr0/ypPPSYmcc0ynrjd07JgRyaart0ykxg7AmR3E4XobvcB8OSu27tHfvDvn/W2rYSEr+BVnjgxC2I52y/s+kXRVjObq3Qvcw+ghn5SW/jgMHEDTQroqFqXGre9/1m/GH52niMh/I31jD6yRiVNyQ9/p4p6yvmSpd3fg4cx4zJkrwlqyqENHo+FDr3fLzKOxiqMWgCqKH+0Wxre+uqJYYBVFRJ2QKY+6HFMWMiT6JJl0+5XcX/gFI894MRQB9pAAAAABJRU5ErkJggg==" />
+                                    </svg>
+
+                                    <span class="item__text-block">
+                                        <span class="block__text1">
+                                            +7(495) 555 55 55
+                                        </span>
+                                        <span class="block__text2 fz-14">
+                                            Многоканальный
+                                        </span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="row__item item-btn">
+                                <a href="#" class="btn green">Перезвоните мне</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="header__menu">
+                    <div class="col-lg-2 col-md-2 col-9 offset-1 offset-md-0 mobile-logo-wrapper">
+                        <a href="#" class="logo">
+                            <img src="img/logo.png" alt="logo">
+                        </a>
+                        <div class="row__item">
+                            <a href="#" class="gray">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 25 25">
+                                    <image id="telephone" width="25" height="25" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAADQElEQVRIiZXWa6ilYxQH8J/tOnRcRs4kGXKPmDBitpjXuGu+TNFLySVFuZVxi3wjhimFXPJJUebNxDBMcxGv23YyGkmSy0w44sSHcYlxjZazjrNnv/vsOf612z3vu571X8961vqvd7t5y+YbgCEswnk4HrOxE37HF9iAl/Bsp6x/nsrNVCQzcDMWYxesw1vYiF/z2aFo40xswf1Y2inrLdMhmYNnMAv34FH80AhjEnvhKtyOr1F2yvr9boNWz4YFGfEojsCSbRDolPXmTlkvSfsgeaNdFQumIjkWL+B5nI1vsD327xNMA52yDoJzsBIr2lUxp5dk10zRCC7Bn9gHb+NLvIY9Gp6bp4qCuAzvhr92VczoJrkNe+Ni/IU98Qpm4nTsi7XTJPoj/czK4vmXZHdcj3sxlrZXYxhFkhUZxHMNr32QqYuiWdyuiqEgOT9r/5Eu88MyVV/lOv7vxGlZvtPBY2m7qJWNtgY/dm2MSA7pWkc/PIinsk+mc5rv8XL4D5Lj4lmPzSochaNzfRc+xxUNb4PxJuYGyQHY1GMavfJhFkTgSRyZjfp/EAoxu5WX/1PPxr+zgy/Ke3giU7oq5WQyj1UxNIA0SnrHVpZsP8NozOV5iuEk3JQ9c1L21oq4y3ZVvNquin7lHTa/tFJND268HseVKX4r88Rn4J3M9Xs4GRfm6db2IYrno7FxPU5puB/HZpyb0rIuIwvpvxyfhtZ1yrrKPtovJakbUTzrg+TFlOuZDYpxfIZTUwU2pG2kcCE+MF6uYXMd5rerYrhr7024sZVdHAPn2ob7SUTUJ4bCZgHEXcydeNuuiuiph0KzOmX97cTzTlmPxnpintyBW7NMRxsUWyMU+u7sr0/ypPPSYmcc0ynrjd07JgRyaart0ykxg7AmR3E4XobvcB8OSu27tHfvDvn/W2rYSEr+BVnjgxC2I52y/s+kXRVjObq3Qvcw+ghn5SW/jgMHEDTQroqFqXGre9/1m/GH52niMh/I31jD6yRiVNyQ9/p4p6yvmSpd3fg4cx4zJkrwlqyqENHo+FDr3fLzKOxiqMWgCqKH+0Wxre+uqJYYBVFRJ2QKY+6HFMWMiT6JJl0+5XcX/gFI894MRQB9pAAAAABJRU5ErkJggg==" />
+                                </svg>
+
+                                <span class="item__text-block">
+                                    <span class="block__text1">
+                                        +7(495) 555 55 55
+                                    </span>
+                                    <span class="block__text2 fz-14">
+                                        Многоканальный
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 col-md-10 menu-wrapper">
+                        <nav>
+                            <ul class="menu gray">
+                                <li class="menu__item"><a href="./podstranica.html">О компании</a></li>
+                                <li class="menu__item"><a href="./podstranica.html">Каталог</a></li>
+                                <li class="menu__item"><a href="./podstranica.html">Оптовикам</a></li>
+                                <li class="menu__item"><a href="./podstranica.html">Доставка</a></li>
+                                <li class="menu__item"><a href="./podstranica.html">Оплата</a></li>
+                                <li class="menu__item"><a href="./podstranica.html">Контакты</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-xs-2 hamburger-wrapper">
+                        <div class="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dropdown-mobile-menu">
+            <nav class="mobile-menu__wrapper">
+                <ul class="menu gray">
+                    <li class="menu__item"><a href="#">О компании</a></li>
+                    <li class="menu__item"><a href="#catalog">Каталог</a></li>
+                    <li class="menu__item"><a href="#">Оптовикам</a></li>
+                    <li class="menu__item"><a href="#delivery">Доставка</a></li>
+                    <li class="menu__item"><a href="#">Оплата</a></li>
+                    <li class="menu__item"><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-bottom-wrapper">
+                <div class="row__item">
+                    <a href="#" class="gray">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="27" viewBox="0 0 26 27">
+                            <image id="shopping-cart" width="26" height="27" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAbCAYAAABiFp9rAAACHklEQVRIieXWy6tNURwH8M/17BIRKWVCklehpBzilDAxEGoP5FHXgDJiokz8A2KmFMqrewxMDEU7ao88B6RwJG53wugSN660snbt9j7n3Jdr4lurtfZv/9b+rt9vfdf67a6NvVvfoB8XcQuDRoEsSUfkPAnXsRxX0YezWFLxHCcC0Rkswn68xAn0TgSRmK6b2ILnmFbx/EtEE44pbQhW4gmasb3Fuzh+jx+VGcOgHdG32DZhb+ndL3zIF1Fr1JuFBTWzJP1U+RqCvMu2Z7FfG/vuqMJiW1wYd5fmDxSJYyYetYuoHN2L2FphYYk4bxuwOwSDoZEQdUSWpP3xwGdlv1qjPj2e030TqrosScOx+epfyvv/IZpcsYwdXZ2IlmFVxTpK1Br1udiMj+3kHS7Vx3g6XH2qNeoVWyErqzEHPe0i6htLESxhCA+wK0vSy+0iCvfVwYq1BUZTYcsIUcyuWMeJVhE9xEmcRgM/Kx4FdNijgSxJP+cPrW7vsHl3sb4ydfQI99+BLEmbrYjESI/gQhRG+EOqYWeM+HZlxh+cwoLo/wXH8RprWqVOTNfUOD6Ee1GuzSj987ljLoZaoz4L53AjS9Kj0fY9bsGKVmLIkZfr+bEPBW5Ghz0Lcg7Vd17Blo8H26UuJ3iFmbiDdVgaZX+tHFGM4AoOx70JqduB+1mSbusUUThLQVLh0G2PK+4pkrTAsfgDGipuWNgl7IHf82WLNM/jndgAAAAASUVORK5CYII=" />
+                        </svg>
+
+                        <p>Корзина пуста</p>
+                    </a>
+                </div>
+                <div class="row__item">
+                    <a href="#" class="gray">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="26" viewBox="0 0 26 26">
+                            <image id="clock_1_" data-name="clock (1)" width="26" height="26" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAACyklEQVRIibWWW4iNURTHf/OZRjGImEmJJJe8kEv4hO9pNOXy4LLLpZRxiZIHEcqlxr1QlJQMCvNJJCRxspV2KS8ybkNeeHKNYSbC0RrrcM75vnN8c/F/Oaf9rb3+e6299n+tkkn10/gH+gOzgMnAMKA38B14BzwGbgNXnLGfirkpRjQK2ArMBjx13qgEXYAKYIj4AFqAU0CtM/ZVxFMBoq7AbmANkAbqgTrgDvA1z7YHUA0sBaqUcDNw0Bmbzjb08jb2AyywFkgBI4BF+j+fRNDkjD3njJ2uqX0B7JfD+WFQVoioHLgGTAS2A7L5ecQ1DNYD5cAZ64CxwFlgPnDGD4OSOKIjargJ2KZpi4NEfCJmXcgk6oXAaWAOsDGfqFpTdB7YFfGQi15A98jqX7K03tl9KSY/DIZmiCS8ncAXYHVkZzugkdUAZXoNrURyiaOBQ8DrziDSyO4Bl4F5fhhUCtFc/XYyYt1xHAdK5S0K0VTgJfDkPxCltKimeCorDyImnQBnbJO+reGeVtDbNriVE3aLrBaG+O7jZW1OirvAeJWpJJA7+iFE74EBbSAywC1gQ0KySqlmIWpQpc7XvUL4CMzIkPlhUJDMD4MKDeKhp5LSVzUuKZrzyGoL7JupvylPRVCwMmJWHBmyG9qz4rBMFB64Wqrv5zqwANirqUxM5oytiqz+TpuQTwD2OGObM/eyTn/rVJ86BL2bo8AbPfyfAmjQ1jAOOKatul3ww6BcNU6qbYUzVqq6tcYz2AGMBBZrE1wCFB04YtI1ELikIr3FGXsx8y2bKK0kn/USx2hKLwA/I15zCSTdy7XdiNKsd8buy7aJG07QLnlAW3ajdtSbmuIWtZEGKCeXpin28l6earpkBMtBsXFLHK2SjcCgrHWJWCLILhrppodl5HLGfotzlmSAlA4ss4QvKgz0FO0CPgCP5ME7Y58V9QD8AmJ6vdgNiOKhAAAAAElFTkSuQmCC" />
+                        </svg>
+                        <span class="item__text-block">
+                            <span class="block__text1">
+                                Время работы с 9:00 до 21:00
+                            </span>
+                            <span class="block__text2">
+                                Online - заявки принимаем круглосуточно
+                            </span>
+                        </span>
+                    </a>
+                </div>
+                <div class="row__item">
+                    <a href="#" class="gray">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 25 25">
+                            <image id="telephone" width="25" height="25" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAADQElEQVRIiZXWa6ilYxQH8J/tOnRcRs4kGXKPmDBitpjXuGu+TNFLySVFuZVxi3wjhimFXPJJUebNxDBMcxGv23YyGkmSy0w44sSHcYlxjZazjrNnv/vsOf612z3vu571X8961vqvd7t5y+YbgCEswnk4HrOxE37HF9iAl/Bsp6x/nsrNVCQzcDMWYxesw1vYiF/z2aFo40xswf1Y2inrLdMhmYNnMAv34FH80AhjEnvhKtyOr1F2yvr9boNWz4YFGfEojsCSbRDolPXmTlkvSfsgeaNdFQumIjkWL+B5nI1vsD327xNMA52yDoJzsBIr2lUxp5dk10zRCC7Bn9gHb+NLvIY9Gp6bp4qCuAzvhr92VczoJrkNe+Ni/IU98Qpm4nTsi7XTJPoj/czK4vmXZHdcj3sxlrZXYxhFkhUZxHMNr32QqYuiWdyuiqEgOT9r/5Eu88MyVV/lOv7vxGlZvtPBY2m7qJWNtgY/dm2MSA7pWkc/PIinsk+mc5rv8XL4D5Lj4lmPzSochaNzfRc+xxUNb4PxJuYGyQHY1GMavfJhFkTgSRyZjfp/EAoxu5WX/1PPxr+zgy/Ke3giU7oq5WQyj1UxNIA0SnrHVpZsP8NozOV5iuEk3JQ9c1L21oq4y3ZVvNquin7lHTa/tFJND268HseVKX4r88Rn4J3M9Xs4GRfm6db2IYrno7FxPU5puB/HZpyb0rIuIwvpvxyfhtZ1yrrKPtovJakbUTzrg+TFlOuZDYpxfIZTUwU2pG2kcCE+MF6uYXMd5rerYrhr7024sZVdHAPn2ob7SUTUJ4bCZgHEXcydeNuuiuiph0KzOmX97cTzTlmPxnpintyBW7NMRxsUWyMU+u7sr0/ypPPSYmcc0ynrjd07JgRyaart0ykxg7AmR3E4XobvcB8OSu27tHfvDvn/W2rYSEr+BVnjgxC2I52y/s+kXRVjObq3Qvcw+ghn5SW/jgMHEDTQroqFqXGre9/1m/GH52niMh/I31jD6yRiVNyQ9/p4p6yvmSpd3fg4cx4zJkrwlqyqENHo+FDr3fLzKOxiqMWgCqKH+0Wxre+uqJYYBVFRJ2QKY+6HFMWMiT6JJl0+5XcX/gFI894MRQB9pAAAAABJRU5ErkJggg==" />
+                        </svg>
+
+                        <span class="item__text-block">
+                            <span class="block__text1">
+                                +7(495) 555 55 55
+                            </span>
+                            <span class="block__text2 fz-14">
+                                Многоканальный
+                            </span>
+                        </span>
+                    </a>
+                </div>
+                <div class="row__item item-btn">
+                    <a href="#" class="btn green">Перезвоните мне</a>
+                </div>
+            </div>
+            <div class="mobile-menu__close">
+                &#10006;
+            </div>
+        </div>
+    </header>
+    <section class="second-section">
+        <div class="main-info-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <h2 class="main-title white">
+                            Современные<br>огрождения для<br>грядок и клумб
+                        </h2>
+                        <p class="subtitle white">
+                            Далеко-далеко за словесными горами в стране гласных<br>и согласных живут рыбные тексты.
+                        </p>
+                        <div class="info__btn-wrapper">
+                            <a href="#" class="btn">
+                                Каталог продукции
+                            </a>
+                            <a href="#" class="btn btn2">
+                                Преимущества
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-8 offset-sm-2 offset-md-0">
+                        <img src="img/gryadka.png" class="gryadka" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="adv-items">
+                <div class="row">
+                    <div class="col-lg-2 col-md-4 col-sm-6">
+                        <div class="adv__item gray">
+                            <div class="item__img-wrapper">
+                                <img src="img/Asset%209.svg" alt="">
+                            </div>
+                            <p>Повышает урожайность</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6">
+                        <div class="adv__item gray">
+                            <div class="item__img-wrapper">
+                                <img src="img/Asset%207.svg" alt="">
+                            </div>
+                            <p>Защищает от<br>сорняков</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6">
+                        <div class="adv__item gray">
+                            <div class="item__img-wrapper">
+                                <img src="img/Asset%205.svg" alt="">
+                            </div>
+                            <p>Эстетичный <br>внешний вид</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6">
+                        <div class="adv__item gray">
+                            <div class="item__img-wrapper">
+                                <img src="img/Asset%204.svg" alt="">
+                            </div>
+                            <p>Прсотой и быстрый<br>монтаж</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6">
+                        <div class="adv__item gray">
+                            <div class="item__img-wrapper">
+                                <img src="img/Asset%206.svg" alt="">
+                            </div>
+                            <p>Транспортабельные<br>и мобильные</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6">
+                        <div class="adv__item gray">
+                            <div class="item__img-wrapper">
+                                <img src="img/Asset%208.svg" alt="">
+                            </div>
+                            <p>Не боится осадков<br>не гниет</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="third-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <img src="img/video.jpg" alt="" class="video-preview">
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <h2 class="title about-title">
+                        О грядках «Даяс»
+                    </h2>
+                    <p class="about-desc">
+                        Компания «Магистраль» представляет комплекты коробов грядок Даяс из пластика для установки в открытом грунте и теплицах.<br><br>Комплект короба изготовлен из полимерного материала (ПВХ) и предназначен для формирования грядок как в теплицах, так и в открытом грунте. Короб пригоден для круглогодичной эксплуатации, а при необходимости может быть демонтирован и смонтирован на новом месте.<br><br>Используя базовый комплект пластикового короба Даяс, вы можете сформировать грядку шириной от 0,75, неограниченно наращивая длину и высоту. пожизненная гарантия
+                    </p>
+                    <a href="#" class="btn green-btn play-btn">
+                        <span>Смотреть видео</span>
+                        <span><img src="img/arrow-right.png" alt=""></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="fourth-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 no-padding">
+                    <div class="adv-left-block">
+                        <img src="img/number-9.png" alt="">
+                        <h2 class="title block__title">
+                            Девять преимуществ<br>высоких грядок
+                        </h2>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-6">
+                    <div class="slider-wrapper">
+                        <div class="adv__slide">
+                            <img src="img/slide-img.jpg" alt="" class="fancybox">
+                            <p class="slide__title">
+                                Толстые и высокие борта
+                            </p>
+                            <p class="slide-desc">
+                                Борта в Грядках Даяс имеют толщину 20 мм, что в 40 раз! толще металлических оцинкованных грядок которые как правило толщиной 0,4 или 0,5 мм, высота Грядок Даяс - 180 мм. Эти грядки не ржавеют как железные, не гниют как деревянные, не трескаются как шиферные.<br><br>Они абсолютно не боятся влаги. Их не нужно красить и чем-то защищать – они «готовы к употреблению». Они аккуратно ограждают сформированную вами почву и делают это эффективно, просто, надежно и красиво.
+                            </p>
+                        </div>
+                        <div class="adv__slide">
+                            <img src="img/slide-img.jpg" alt="" class="fancybox">
+                            <p class="slide__title">
+                                Толстые и высокие борта
+                            </p>
+                            <p class="slide-desc">
+                                Борта в Грядках Даяс имеют толщину 20 мм, что в 40 раз! толще металлических оцинкованных грядок которые как правило толщиной 0,4 или 0,5 мм, высота Грядок Даяс - 180 мм. Эти грядки не ржавеют как железные, не гниют как деревянные, не трескаются как шиферные.<br><br>Они абсолютно не боятся влаги. Их не нужно красить и чем-то защищать – они «готовы к употреблению». Они аккуратно ограждают сформированную вами почву и делают это эффективно, просто, надежно и красиво.
+                            </p>
+                        </div>
+                        <div class="adv__slide">
+                            <img src="img/slide-img.jpg" alt="" class="fancybox">
+                            <p class="slide__title">
+                                Толстые и высокие борта
+                            </p>
+                            <p class="slide-desc">
+                                Борта в Грядках Даяс имеют толщину 20 мм, что в 40 раз! толще металлических оцинкованных грядок которые как правило толщиной 0,4 или 0,5 мм, высота Грядок Даяс - 180 мм. Эти грядки не ржавеют как железные, не гниют как деревянные, не трескаются как шиферные.<br><br>Они абсолютно не боятся влаги. Их не нужно красить и чем-то защищать – они «готовы к употреблению». Они аккуратно ограждают сформированную вами почву и делают это эффективно, просто, надежно и красиво.
+                            </p>
+                        </div>
+                        <div class="adv__slide">
+                            <img src="img/slide-img.jpg" alt="" class="fancybox">
+                            <p class="slide__title">
+                                Толстые и высокие борта
+                            </p>
+                            <p class="slide-desc">
+                                Борта в Грядках Даяс имеют толщину 20 мм, что в 40 раз! толще металлических оцинкованных грядок которые как правило толщиной 0,4 или 0,5 мм, высота Грядок Даяс - 180 мм. Эти грядки не ржавеют как железные, не гниют как деревянные, не трескаются как шиферные.<br><br>Они абсолютно не боятся влаги. Их не нужно красить и чем-то защищать – они «готовы к употреблению». Они аккуратно ограждают сформированную вами почву и делают это эффективно, просто, надежно и красиво.
+                            </p>
+                        </div>
+                        <div class="adv__slide">
+                            <img src="img/slide-img.jpg" alt="" class="fancybox">
+                            <p class="slide__title">
+                                Толстые и высокие борта
+                            </p>
+                            <p class="slide-desc">
+                                Борта в Грядках Даяс имеют толщину 20 мм, что в 40 раз! толще металлических оцинкованных грядок которые как правило толщиной 0,4 или 0,5 мм, высота Грядок Даяс - 180 мм. Эти грядки не ржавеют как железные, не гниют как деревянные, не трескаются как шиферные.<br><br>Они абсолютно не боятся влаги. Их не нужно красить и чем-то защищать – они «готовы к употреблению». Они аккуратно ограждают сформированную вами почву и делают это эффективно, просто, надежно и красиво.
+                            </p>
+                        </div>
+                        <div class="adv__slide">
+                            <img src="img/slide-img.jpg" alt="" class="fancybox">
+                            <p class="slide__title">
+                                Толстые и высокие борта
+                            </p>
+                            <p class="slide-desc">
+                                Борта в Грядках Даяс имеют толщину 20 мм, что в 40 раз! толще металлических оцинкованных грядок которые как правило толщиной 0,4 или 0,5 мм, высота Грядок Даяс - 180 мм. Эти грядки не ржавеют как железные, не гниют как деревянные, не трескаются как шиферные.<br><br>Они абсолютно не боятся влаги. Их не нужно красить и чем-то защищать – они «готовы к употреблению». Они аккуратно ограждают сформированную вами почву и делают это эффективно, просто, надежно и красиво.
+                            </p>
+                        </div>
+                        <div class="adv__slide">
+                            <img src="img/slide-img.jpg" alt="" class="fancybox">
+                            <p class="slide__title">
+                                Толстые и высокие борта
+                            </p>
+                            <p class="slide-desc">
+                                Борта в Грядках Даяс имеют толщину 20 мм, что в 40 раз! толще металлических оцинкованных грядок которые как правило толщиной 0,4 или 0,5 мм, высота Грядок Даяс - 180 мм. Эти грядки не ржавеют как железные, не гниют как деревянные, не трескаются как шиферные.<br><br>Они абсолютно не боятся влаги. Их не нужно красить и чем-то защищать – они «готовы к употреблению». Они аккуратно ограждают сформированную вами почву и делают это эффективно, просто, надежно и красиво.
+                            </p>
+                        </div>
+                        <div class="adv__slide">
+                            <img src="img/slide-img.jpg" alt="" class="fancybox">
+                            <p class="slide__title">
+                                Толстые и высокие борта
+                            </p>
+                            <p class="slide-desc">
+                                Борта в Грядках Даяс имеют толщину 20 мм, что в 40 раз! толще металлических оцинкованных грядок которые как правило толщиной 0,4 или 0,5 мм, высота Грядок Даяс - 180 мм. Эти грядки не ржавеют как железные, не гниют как деревянные, не трескаются как шиферные.<br><br>Они абсолютно не боятся влаги. Их не нужно красить и чем-то защищать – они «готовы к употреблению». Они аккуратно ограждают сформированную вами почву и делают это эффективно, просто, надежно и красиво.
+                            </p>
+                        </div>
+                        <div class="adv__slide">
+                            <img src="img/slide-img.jpg" alt="" class="fancybox">
+                            <p class="slide__title">
+                                Толстые и высокие борта
+                            </p>
+                            <p class="slide-desc">
+                                Борта в Грядках Даяс имеют толщину 20 мм, что в 40 раз! толще металлических оцинкованных грядок которые как правило толщиной 0,4 или 0,5 мм, высота Грядок Даяс - 180 мм. Эти грядки не ржавеют как железные, не гниют как деревянные, не трескаются как шиферные.<br><br>Они абсолютно не боятся влаги. Их не нужно красить и чем-то защищать – они «готовы к употреблению». Они аккуратно ограждают сформированную вами почву и делают это эффективно, просто, надежно и красиво.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="slick-buttons">
+                        <div class="adv-prev btn green">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="7" height="14" viewBox="0 0 7 14">
+                                <image id="right-arrow_copy" data-name="right-arrow copy" width="7" height="14" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAOCAYAAADjXQYbAAAAxUlEQVQYlXXQrU5DQRCG4ac0aBQNAlmDIDjEqnUgcIiVXAI4FIQrIARbHKlYU0kCCDaQ7CVwETgMAnPIIYemPcCoybzzzc83aJpGP0KOu7j9BUOO23jE8UoPjHGHs5pKnsOQ4ybucVVTmbS177Ehx3U8YVZTOf8RDB+2ylqneK6pnC6uacfO8IqT/tUtfMMIq3/Boy6fhhyHS7Cm8olDbGASchwsKtVUPnCAHVwuwa7hHfvYCzlezP/sudSa8YLr/4wf4+YL5zU/eH+c8X8AAAAASUVORK5CYII=" />
+                            </svg>
+                            <span>Вернуться назад</span>
+                        </div>
+                        <div class="adv-next btn green">
+                            <span>Посмотреть еще</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="7" height="14" viewBox="0 0 7 14">
+                                <image id="right-arrow" width="7" height="14" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAOCAYAAADjXQYbAAAA0UlEQVQYlW3QoUpEURDG8d/uajOLwWgxiE3YW+5VFOOC5TyCVR9AER9ANPsC9xSDQdB00nkEwW4QTRaD5cpZXNm9+MEwMP+Zb4YxbuuXcVvvdF2nH0Oc476KzZaehjmkiDM8VLHZmMdlUg7pFtd4rGKzPoOD4j1TFZtLHGE3h/SxAIuq2NyUhP2pbU8neMbdf3AZq3jv7xyhxQomS3NggHL1Gg5zSN9/EFfYxl4O6asUprCKzUXpRp1D+px1j5420ymOfyfe+h+a4CCH9LpwM34AA0JKv6ZnSZwAAAAASUVORK5CYII=" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="adv-right-bg"></div>
+    </section>
+    <section class="fifth-section" id="catalog">
+        <div class="container">
+            <h2 class="title catalog-title">
+                Каталог продукции
+            </h2>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="catalog__set-wrapper">
+                        <div class="set">
+                            <img src="img/img1.png" alt="" class="fancybox">
+                            <div class="set__number">
+                                <span>3</span>м
+                            </div>
+                            <p class="set__text gray">
+                                Набор грядок<br>3 метра
+                            </p>
+                        </div>
+                        <div class="set">
+                            <img src="img/img1.png" alt="" class="fancybox">
+                            <div class="set__number">
+                                <span>4</span>м
+                            </div>
+                            <p class="set__text gray">
+                                Набор грядок<br>4 метра
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="catalog__wrapper">
+                        <p class="catalog__title green">
+                            Готовые комплекты высоких грядок из пвх
+                        </p>
+                        <p class="catalog__desc gray">
+                            Грядки «Сябар» сформированы в готовые комплекты и собираются как конструктор. Покупайте нужное количество комплектов и создайте свою уникальную грядку
+                        </p>
+                        <div class="catalog__set-items">
+                            <div class="set__items">
+                                <p>Набор грядок <span>5 метров</span></p>
+                                <p>Набор грядок <span>6 метров</span></p>
+                                <p>Набор грядок <span>7 метров</span></p>
+                                <p>Набор грядок <span>8 метров</span></p>
+                            </div>
+                            <div class="items__buttons">
+                                <a href="#" class="btn green-btn buttons__btn1">перейти в каталог</a>
+                                <a href="#" class="btn green">Создать свою грядку</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sixth-section">
+        <div class="container">
+            <h2 class="title option-title">
+                Популярные варинты размещения<br>грядок в теплицах
+            </h2>
+        </div>
+        <div class="tab-content" id="tab1">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="schema-wrapper">
+                        <img src="img/shema.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="option-right-wrapper">
+                        <div class="option-right__title">
+                            Вариант № 1
+                        </div>
+                        <p class="option-right__desc gray">
+                            Для теплицы длиной 4 метра<br>и шириной 3 метра
+                        </p>
+                        <a href="#" class="btn green-btn">Рассчитать стоимость</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" id="tab2">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="schema-wrapper">
+                        <img src="img/shema.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="option-right-wrapper">
+                        <div class="option-right__title">
+                            Вариант № 2
+                        </div>
+                        <p class="option-right__desc gray">
+                            Для теплицы длиной 4 метра<br>и шириной 3 метра
+                        </p>
+                        <a href="#" class="btn green-btn">Рассчитать стоимость</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" id="tab3">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="schema-wrapper">
+                        <img src="img/shema.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="option-right-wrapper">
+                        <div class="option-right__title">
+                            Вариант № 3
+                        </div>
+                        <p class="option-right__desc gray">
+                            Для теплицы длиной 4 метра<br>и шириной 3 метра
+                        </p>
+                        <a href="#" class="btn green-btn">Рассчитать стоимость</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" id="tab4">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="schema-wrapper">
+                        <img src="img/shema.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="option-right-wrapper">
+                        <div class="option-right__title">
+                            Вариант № 1
+                        </div>
+                        <p class="option-right__desc gray">
+                            Для теплицы длиной 6 метра<br>и шириной 3 метра
+                        </p>
+                        <a href="#" class="btn green-btn">Рассчитать стоимость</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" id="tab5">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="schema-wrapper">
+                        <img src="img/shema.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="option-right-wrapper">
+                        <div class="option-right__title">
+                            Вариант № 2
+                        </div>
+                        <p class="option-right__desc gray">
+                            Для теплицы длиной 6 метра<br>и шириной 3 метра
+                        </p>
+                        <a href="#" class="btn green-btn">Рассчитать стоимость</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" id="tab6">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="schema-wrapper">
+                        <img src="img/shema.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="option-right-wrapper">
+                        <div class="option-right__title">
+                            Вариант № 3
+                        </div>
+                        <p class="option-right__desc gray">
+                            Для теплицы длиной 6 метра<br>и шириной 3 метра
+                        </p>
+                        <a href="#" class="btn green-btn">Рассчитать стоимость</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" id="tab7">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="schema-wrapper">
+                        <img src="img/shema.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="option-right-wrapper">
+                        <div class="option-right__title">
+                            Вариант № 1
+                        </div>
+                        <p class="option-right__desc gray">
+                            Для теплицы длиной 8 метра<br>и шириной 3 метра
+                        </p>
+                        <a href="#" class="btn green-btn">Рассчитать стоимость</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" id="tab8">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="schema-wrapper">
+                        <img src="img/shema.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="option-right-wrapper">
+                        <div class="option-right__title">
+                            Вариант № 2
+                        </div>
+                        <p class="option-right__desc gray">
+                            Для теплицы длиной 8 метра<br>и шириной 3 метра
+                        </p>
+                        <a href="#" class="btn green-btn">Рассчитать стоимость</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" id="tab9">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="schema-wrapper">
+                        <img src="img/shema.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="option-right-wrapper">
+                        <div class="option-right__title">
+                            Вариант № 3
+                        </div>
+                        <p class="option-right__desc gray">
+                            Для теплицы длиной 8 метра<br>и шириной 3 метра
+                        </p>
+                        <a href="#" class="btn green-btn">Рассчитать стоимость</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="tabs-wrapper">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="tabs__block">
+                            <p class="tabs__block-title">
+                                Варианты
+                            </p>
+                            <div class="tabs__items">
+                                <li class="tabs__item"><a href="#tab1">1</a></li>
+                                <li class="tabs__item"><a href="#tab2">2</a></li>
+                                <li class="tabs__item"><a href="#tab3">3</a></li>
+                            </div>
+                            <img src="img/triengle.jpg" class="tabs__triangle">
+                        </div>
+                        <div class="tabs-desc gray">
+                            Для теплицы длиной 4 метра
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="tabs__block">
+                            <p class="tabs__block-title">
+                                Варианты
+                            </p>
+                            <div class="tabs__items">
+                                <li class="tabs__item"><a href="#tab4">1</a></li>
+                                <li class="tabs__item"><a href="#tab5">2</a></li>
+                                <li class="tabs__item"><a href="#tab6">3</a></li>
+                            </div>
+                            <img src="img/triengle.jpg" class="tabs__triangle">
+                        </div>
+                        <div class="tabs-desc gray">
+                            Для теплицы длиной 6 метра
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="tabs__block">
+                            <p class="tabs__block-title">
+                                Варианты
+                            </p>
+                            <div class="tabs__items">
+                                <li class="tabs__item"><a href="#tab7">1</a></li>
+                                <li class="tabs__item"><a href="#tab8">2</a></li>
+                                <li class="tabs__item"><a href="#tab9">3</a></li>
+                            </div>
+                            <img src="img/triengle.jpg" class="tabs__triangle">
+                        </div>
+                        <div class="tabs-desc gray">
+                            Для теплицы длиной 8 метра
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="seventh-section">
+        <div class="container">
+            <h2 class="title work-title">
+                Как мы работаем
+            </h2>
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+                    <div class="stage-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="153" height="136" viewBox="0 0 153 136">
+                            <image id="Vector_Smart_Object" data-name="Vector Smart Object" width="153" height="136" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJkAAACICAYAAAD01kmEAAASr0lEQVR4nO2dCXgVVZbH/wlJSAJhSxDZV4EgEBjZkWGThgiO7LjQg4JIC9M2iyOO2iiKzgAKaHer4Ea32h+gNuPC0soAAaUVGQIIjAEUZIdACISE7DXfqZzCl3crj/eSeq9u1bu/76svSd1Kcqvq/+5y7rnnRGiaBpcTA+BWAK0AtOCjCYBEj4OuiQKQwI8iB0AxgEIAFz2OkwCO8fETgAN8jcIHbhNZNIBuAHoB6AGgE4B2LKBgQELMAPA9gJ0AvgGwC0CRvY9BLtwgsjYAhgFIBdAfQA3hitCSCyANwAYAGwEcsbk+tuNUkVH3NwHAeG6pZIZaujUAVnP3GnY4SWT1AEwE8BB3g06EutW3ALwPIMuh9xAwThBZFwCzuNWKFUqdST63bksB7HHJPVWIzCL7FYB/B3CHUOIuNgFYDOALt96gjCIbBOA5AH2FEnfzNYB5ADa77S5lEhkN5l9lkYUzJLLfAdjvlmcQKZwJPUkA/sRjk3AXGPgZpPMzSRJKHYi/LVlbACN5nNSBLeVgS/hBHk/8N4BDwm/65n4e/Nb3eVX4kglgNs9GXSsyMm4+D6CfUGLOdgC/Z2OkL5oCWMFGVMWNIaPuwwBOOPFZVSQyMhUs4xuLEEp9o7GAZvJU3ZuxAJaz3UvhP5f4fXzktGdmJjJ6+Z8D6C1cHRj/ADDCw+gYB+CPACYH+Z7czjsA/g3ANafcp7fI4nl201O4snJ8ywPZBgD+xoZVRdWhSdJoAEed8Cy9RfYmL9tYyQYWreoerYV6iHudYMT1FBkN8rdUYgymsA9yKXoEwNsyvwNPO9kCJTDHEc0L7lK/O6MlSwmHhVqX8zqAGTy7lwqjJRsd7m/IBVC3+WcA1WS7FUNk/hpbFXLzax6fSdV1GiJrL5QonMokXveURmiGyBKFEoWToa7zRVnqL4MXhiI4PMFisx1DZBfVi3Ylr8jgPmWI7AehROEGyI72IW9stg1DZNuVpFwLLed9zOvStmCI7G/h/iZcDjkm/MGuWzREthfAV0Kpwk1MZl++kKMWyMOLS7yEGFIPW08TRhq7+ijcS132Wg4pwXZaVMgJhXv4IFQ18zbG5gEYzh6tikpSWFiIuXPnIikpCREREZYcKSkp+PTTT616JctCut2OWjKTI07TtDc0TSvVFAEzYcIEjV1uLD8++eQTq17IaybvPSiH2UYST/qz6pVvvp/s27dPb3WI/ve0RJdBNyOyWtXmUteuFuPz137AyYwr6Ny5M/bu3StcUwlKAHTlSENB5UYRCNPUklNgGAKoXT8WI6ZbFzptxPT2eON3O3URW0Q13lgd9IA2N1ogHwhgsHBWUSElJSV6UY3a0RVdUiniagYlIulgfsdB5UY1XyCcUfhF9rkCrH7Rup4oLydoYWgXBDuCki+RUdyLPsJZhV/k5RRi18ZTTnhYffhdB21rnS+RzRXOKPymbt26uHPEMOQWZkFDaRUeXARio2oi70oRPvvsM6HUIubaIbKuKoxT1WjWrBne/8tfLft7e/bsCabIBvE7TxdKLKCigf9M4YzC7QTtnZuJrB4HAVaEF+OCFUrCrLuc6KIo07aTn5+PmTNn4uzZs6ZVady4MZYsWYLq1asLZSEmjt/9q1b/WzORTRHOKCoNGU+XL1/u89cfeOABdO/eXThvAw+FQmQdAXQWrrKRn3/+GTt27MD58+dxgyWwgKlWrRpGjhyJpk2b4sCBA/jyyy+r/Dd37txZ7mcSz7Jly3D0qHmUp9atW6Nbt27CeZvoxBqwNiiy14Loc8Iyqk0cOnRIS01NDdpCs3GMGTNGv8GOHTsKZVU5UlJSLH1w6enp1+sTZJ6zepHcuyWbIKjQBr799lsMHToUly9f1v95YmIimjRpYnlFoqOjcd999+nfT548Ge+99x5KS6ti0wKysrJw4oQjQ7sajOd8Apbh6YXRlpNN2Up2djbat2+Pc+fOoWHDhlixYgXuvPNOREaaTYTlY+XKlXjwwQd1TwyybRUUFODxxx/Xu31/iIuLw7x585CcnFzuavpbXbt21b8PQe4F0sJh4Wwl8WzJpIhEvXTpUl1gtWrVwrZt29CmTRvhGidB4nj11cDG0mTIXbhwoXA+hKS6WmQffVQW3Hn69OmOFxh44L948WKcPHlSKDMjJiYGM2bMMCkJKfN4mcmSTd9RHl//WSi1gcOHyz5AQ4YMkaE6VYa6+ccee8xp1U7kbZIvA5gPoEC4IgAMkaVIkPFWp6iozKWlXr3yxmeaBFy6dEm4nqhRowbq11dJTSyG8rL/B33eeTJgboPxA0Nkt8t8tzQZaNmypf7VDLJ3kS2tR48eJqX2Qh+ap59+Wh9nVobx48frEx8bISPebk5U8WFlqmGITL634wGJyNeyS1RUlM9yO9m9ezcWLVpU6RqQkdhmkRF1OL11MqdBCmh6a4hM6o0iCQkJuu0pNzdXKCNiY2P1Q0bImr9gwQJkZmZWqnZ33323cM4mInh81pjmZbwRxS9IZNXZLiI1ZDitU6eO7NUUoFb4qaeeEs47mIdZM1P8FVoUx4s1WyiXiqtXr+LChQt+VYm6T/JuoE2xiqBAcWkLAUzzp+skcUlvjKKZZatWrfQlG3958skn8cILL9hddTczFcAxf2LT0lpNS+GshAS6rEStmSLoLPAnBwS9iRbCWcmoXbs2jh8/7rcZgMZv1F0qgk4E5w1I92VHI5E1Es5KCC0ct2gh/echHKHZ2Breu1lodv9RTonhT5Fy8vLyhPP+QCYQmuWFkoMHD+ofCs2CVEcRiNDvX2LIYPsch3UX0TTtoCyOilqZD4t+kJOeQXZ2ttagQYNKOxEOGDBA+D8GO3fu1IYPH6698sorWk5OjlAeKO+++67w/60+JKVI07SuFTkt1hWUJxlU0ap8ksmnqyLWrFmDdevW6cf8+fPxyCOP4NFHH8VNN91UwW/4R1KjBAyfYd3EPftsIT75wwHhvEREcd6A/t5mjSjepSI1ZIQlp7+LFysXYKhRo4qHnYMGDcJLL72kf08mEjJ7vPzyy5g0aRLmzJmDW265Rfgdf4iJBzr2o6zY1nD68BXZXxM4EdxY7zXOqAr2XkoHjavosBoSGTlIXrlyBU3a10bW6TzkXcnXdxiRV+7o0aN1z1Z/F9+N5a2sM9dQlF+C6FhrxoLnj5ctqdHMWXLmc8j+66sBEVoIfHkDwbDSp6eno0uX0Cyp3nPPPVi9ejWS+9THxGe74Lv1p5C26igunb12/Zp+/frpITppsdrXSsKZM2fQvHlz3fuiaXJttOuRhIjIiq/3h8JrJdi57iSu5RQhNTUV69evt/L2g8EEnnGWIdsY0mzgH2xWrVql/8+o6Ehtwd+HaIu3DdMWbhmq3TcvRWvctla5gXuHDh30wX1BQUGFtaJJRDAG/PXr19cyMjKE/ych//Ac+FNLRp299f1QJbGjJcvJydGDCNPkYuL8LkgZeHO58sO7LmLrX3/CoV2/jAlpnEc7w6dNm6Z3t95s3rwZb77zOo78lIFS7cY7oA4dOIqrOXlo0rwhbmr4i8MmPY/46gno2a0vZs2a5XN8KRm0W3kXuLskT8DastTPDpERI0aM0GeYXQY3xP3PpAjlxOkjObrY9m4+i9LSslEGCYyE9sQTTwjevIEwYMAApKWl6RtpSLwu4A0jFSIN+q+54Y6qyqhRo/S/8MM3mSguMm95ataNQeeBNyNl0C8tHU0YaKMItTKKcozlLHX67JIc528O9+dz11136Yvw+bnF+HF3Ftr1LAtzT4P/9csP4ef92bh0zvzzSPtDJfBelQ16gAMAfEkiy2S32rCGjK99+/bF9u3bsX/7uesi+/vbh7Hnf85cfzRkorjtttvQq1cv3azRu3dvPZaGwpRUQ2QqhDpDXaYhstGzO6C0RMOBr87rhbQSMGXKFH1nuHIj8ht9XyONyU47o77BhwyvxNVLhTi2PxtHdmfp3Sd1o88++6zegimBBUQHWraMZO9GBaAbUY14E9Sa7d1aFriOutGqrmWGKaSvbkpkXhizzAPbz+Mgd5Xjxo0TrlP4TadIKwNruAEKikdcPJ2H3Mtlnh+G8BSVon0kB9UoVs+vjE6dOqF161bXf+7Zs2dQYqOFES0iOZjGoXB/Ep6MGvXL3oixY21J2+0mmngmulcwY8aMuf696iqrTKIxH6dMvfc6+EYshQytFL+iZs2aeuBgRZWIN0T2tWzPMSPD3siiRnw0ipQYCmiHvEu5nkRxD+cfj5flPsmRUOEOjDEZzS63qXeqCAJXPddINsgQN5b8+MmJ8N6nUpDcN3QJ/+1m0f3b9eUsJ0YuugF5niLb6Pva0EBLOBs3bsSeLafxT0MbylCloEMetyQwok8f1+Wxvei5U+mQDPayqVOn6l//b0cmdqw9LpS7jezz+fh4cVmWma69ktG2rfSh4gLlZITXZiXaav57O2tE9fmXkXfh80/X6T+TJ2qP4U2Q2Cge1aLcE28s93IRDu+6gLRVx/Tlq5jYavgi7TP075EqXOtw3vTeUt5Rho0vFC5g8NABwm4dtx7xCTHayrVLhefgEuYIcQs0Tdsnw72VlpZqH3zwgda7by8tMjLSlQJr1KihNuO307TTZ04J9+8ihnh3l+A0wUtlaqFLSkr0VIS+YlqY8eOPP+KOO+7QSzZt2mSp9Z7CGFBanokTJ+L5558Xym8E+afFx0tjlgwWtCMnyczN8y8A/lOm7L0U9ok2awTK1q1b9d+grWoUjsDXzu9AGThwoC6y/fv3q7hpFXOQ9uKYxcHIKrfF3MGQCMAhBqwOUkx/E5yZ10iZqBDYBB/BVpYJZxwIbQohbr/d+oQrtEuJ/P0pPyZlQ1GYst6XyCgG6BbhrIOgxPJHjhzRK2y0OlZC4ynaWAKPFlNRDoqHr49XzAb+Br+ibYfCWQmhAf6iRQuxZesWnD+fqc+SS4qLkZtbFv4zoVZCUGL6X8vLQ1FRMaKjoxDHg/j4uDjc2vFWTJn8kL7IH8a5BCi7/2/070xMGJ7H17LPpNevX6/FxsUI5gEZjtFjRmnFxcVCncOEHp5RfQQJejDYGLzJCIVdb5/cDtfy8lGnQSz6jW2Beo3sDRxZVFCK77eexffbysLBU6pnChMaZpATbC/jlm8kMrDIBgtnJYDCbS5ZsgS1kqpj9jt9UaNOjDR1+/xPPyBt9THdu5ZsfBQiPowoFwSvooG/J7MDyQgWSozZY++7m0klMGLwpDLDL3m87t0bVlsoaPfbx54nzIyx3uzTFzmNQZxEUAsBHleGOnBvUtMa+qI2xcs4d+wqtFKxR4iNj0F+XmGlE6o6lGeERslksG921Nc0LVO28Wrz5s1tG+C37FxXD/vZe2Qzocz7WLt2rVB3l/KVpmkR3vrxN/J1JnebUjF4sH1DxXYtO2NY29nonuy7DomJidfja7gccuF/FF4x/OHnwN8T8p4dKpxVKICFFaW9CVRkTXkjsPRZTBQhZZevBF6BJoo4wdlaFQoD8g4YX5HAKiMycEqTd4SzinBE41zkFea6rKzIiN/yhmBFePOMt03MjEDHZJ604r5Yjc/Ck7cAPGw2m/SmKsm7fqJoAoLhTREO/JmN8361UFXNEPcFd52K8GEFj8P8blysSEP4OoD/Es4q3IbGY7DfBNp7VWVMVu7vAHhNxvVNhSVk8/jrw8r8MatEBhbaSgD/KpQonMwutoP5NFP4wsqsvaTWyQDeE0oUTqSQt0beXhWBwU9Xn0CgvnoShXpQXaej2QxgBvuGVZlg5B+nFm06gBeEEoXs0Lr0OPaEtkRgsHhMZsZDPPtUCYnk5hsAL5LXuL+2r0AItsjAW+tWqZUB6aDsgB+x5X5XMCsXCpGBl6BojSt0+Z4V3tCLPkD5Jzl0K228LRKuCgKhEhk4svYfATwolCgCgaJhngLQgBxvae+yR9Ry2s18lXdvn+bkbBk81vpfjnMSckIpMoPxnARddZ+BcYln7I4LhmOHyMAetm8qV26/oXARU9lp1HEEw4ThDyc4nPuvuWlXmHOBn9EwpwoMNorM4H1Osv8WR+VTlFHMa8HJ/IwcjV3dpRm0b+wlAINMysIJCtk1h8N3uQK7WzJP0tnSTEFewzGq3A6+90FuEhgka8m8oYD2j4VBy7aZW/ANQolLkFlkBmTAncWRYqoLpc4kn00RS8NhQ44TRGZQj2da5PrbSSh1Bt8DeJvdoWwxjNqBk0TmSSf2FiDDbjuhVC4yuNX6kEUWdjhVZJ60YTvSCIpBLEFi2DxeF9zAsUOOCFeEGW4QmSfRALpzKEn62hlA2yC6GhXzWiLFcPuOXWa+C9XCs1Nwm8jMoMlCB/YEacFfG1EcO15gTmRxVvdaaC5gsVz0OE6xK/JR3nd6kK9TVASA/weum5nlmCgYtAAAAABJRU5ErkJggg==" />
+                        </svg>
+                        <p class="stage-item__title white">
+                            <span>Этап 1</span>
+                            Вы звоните нам или оставляете заявку через сайт
+                        </p>
+                        <div class="stage-round round1"></div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="stage-item stage-item2">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="140" height="147" viewBox="0 0 140 147">
+                            <image id="Vector_Smart_Object" data-name="Vector Smart Object" width="140" height="147" xlink:href="data:img/png;base64,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" />
+                        </svg>
+                        <p class="stage-item__title white">
+                            <span>Этап 2</span>
+                            Наш менеджер связывается с Вами по телефону, отвечает на все вопросы и оговаривает детали заказа
+                        </p>
+                        <div class="stage-round round2"></div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <div class="stage-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="157" height="136" viewBox="0 0 157 136">
+                            <image id="Vector_Smart_Object_copy_3" data-name="Vector Smart Object copy 3" width="157" height="136" xlink:href="data:img/png;base64,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" />
+                        </svg>
+                        <p class="stage-item__title white">
+                            <span>Этап 3</span>
+                            В удобное для Вас время мы доставляем Ваш заказ
+                        </p>
+                        <div class="stage-round round1"></div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="stage-item stage-item2">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="148" height="151" viewBox="0 0 148 151">
+                            <image id="Vector_Smart_Object" data-name="Vector Smart Object" width="148" height="151" xlink:href="data:img/png;base64,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" />
+                        </svg>
+
+                        <p class="stage-item__title white">
+                            <span>Этап 4</span>
+                            Оплачиваете после получения и проверки комплектации и качества
+                        </p>
+                        <div class="stage-round round2"></div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <div class="stage-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="145" height="145" viewBox="0 0 145 145">
+                            <image id="Vector_Smart_Object" data-name="Vector Smart Object" width="145" height="145" xlink:href="data:img/png;base64,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" />
+                        </svg>
+
+                        <p class="stage-item__title white">
+                            <span>Этап 5</span>
+                            Вы получаете еще больше урожая и восхищенные взгляды соседей
+                        </p>
+                        <div class="stage-round round1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="eighth-section" id="delivery">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-7">
+                    <img src="img/car.png" alt="" class="car-img">
+                </div>
+                <div class="col-lg-5 col-md-5 delivery-block">
+                    <h2 class="title delivery-title">
+                        Бесплатная доставка<br>вашего заказа
+                    </h2>
+                    <a href="#" class="btn green-btn">
+                        Узнать подробности
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="ninth-section">
+        <div class="container">
+            <h2 class="title examples-title">
+                Примеры высоких грядок, изготовленных<br>из грядочной доски ПВХ «Сябяр<span>тм</span>»
+            </h2>
+            <div class="example-slider-wrapper">
+                <div class="example-slide row">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-6 slide-item"><img src="img/img1.png" alt="" class="fancybox"></div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-6 slide-item"><img src="img/img1.png" alt="" class="fancybox"></div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-6 slide-item"><img src="img/img1.png" alt="" class="fancybox"></div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-6 slide-item"><img src="img/img1.png" alt="" class="fancybox"></div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-6 slide-item"><img src="img/img1.png" alt="" class="fancybox"></div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-6 slide-item"><img src="img/img1.png" alt="" class="fancybox"></div>
+                </div>
+                <div class="example-slide row">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-6 slide-item"><img src="img/img1.png" alt="" class="fancybox"></div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-6 slide-item"><img src="img/img1.png" alt="" class="fancybox"></div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-6 slide-item"><img src="img/img1.png" alt="" class="fancybox"></div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-6 slide-item"><img src="img/img1.png" alt="" class="fancybox"></div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-6 slide-item"><img src="img/img1.png" alt="" class="fancybox"></div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-6 slide-item"><img src="img/img1.png" alt="" class="fancybox"></div>
+                </div>
+            </div>
+            <div class="examples-buttons">
+                <a href="#" class="btn ex-prev green">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="7" height="14" viewBox="0 0 7 14">
+                        <image id="right-arrow_copy" data-name="right-arrow copy" width="7" height="14" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAOCAYAAADjXQYbAAAAxUlEQVQYlXXQrU5DQRCG4ac0aBQNAlmDIDjEqnUgcIiVXAI4FIQrIARbHKlYU0kCCDaQ7CVwETgMAnPIIYemPcCoybzzzc83aJpGP0KOu7j9BUOO23jE8UoPjHGHs5pKnsOQ4ybucVVTmbS177Ehx3U8YVZTOf8RDB+2ylqneK6pnC6uacfO8IqT/tUtfMMIq3/Boy6fhhyHS7Cm8olDbGASchwsKtVUPnCAHVwuwa7hHfvYCzlezP/sudSa8YLr/4wf4+YL5zU/eH+c8X8AAAAASUVORK5CYII=" />
+                    </svg>
+                    <span>Вернуться назад</span>
+                </a>
+                <a href="#" class="btn ex-next green">
+                    <span>Посмотреть еще</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="7" height="14" viewBox="0 0 7 14">
+                        <image id="right-arrow" width="7" height="14" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAOCAYAAADjXQYbAAAA0UlEQVQYlW3QoUpEURDG8d/uajOLwWgxiE3YW+5VFOOC5TyCVR9AER9ANPsC9xSDQdB00nkEwW4QTRaD5cpZXNm9+MEwMP+Zb4YxbuuXcVvvdF2nH0Oc476KzZaehjmkiDM8VLHZmMdlUg7pFtd4rGKzPoOD4j1TFZtLHGE3h/SxAIuq2NyUhP2pbU8neMbdf3AZq3jv7xyhxQomS3NggHL1Gg5zSN9/EFfYxl4O6asUprCKzUXpRp1D+px1j5420ymOfyfe+h+a4CCH9LpwM34AA0JKv6ZnSZwAAAAASUVORK5CYII=" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="tenth-section" id="contacts">
+        <div class="container">
+            <h2 class="title map-title">
+                Схема проезда
+            </h2>
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="map-desc">
+                        <p class="contacts-title">
+                            Контакты
+                        </p>
+                        <p class="contacts__desc">
+                            Адрес склада официального дилера в Москве: г. Москва, ул. Братьев Фонченко, д. 19с37 Заезд для всех транспортных средств на территорию с улицы Минская.<br><br>Режим работы: 8.00 - 19.00 (обед с 12.00 до 13.00) тел. +7 (915) 284-36-65 +7 (915) 284-36-85
+                        </p>
+                        <p class="desc__warning">
+                            <span>Внимание!</span>Заезд на территорию завода осуществляется строго по пропускам. Для заказа пропуска Вам необходимо связаться с нами и по прибытию спросить на проходной как проехать к ООО «Магистраль». При себе иметь документ удостоверяющий личность и документ на автомобиль.
+                        </p>
+                        <p class="travel__title">
+                            Как к нам проехать
+                        </p>
+                        <p class="travel__desc">
+                            Заезжаете на территорию, поворачиваете налево, далее двигаемся прямо к зданию №17.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="map-wrapper">
+                        <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1f7a324c18ff3a322ef66d41172bf8dbb539bcfd73e3f618a15368e3011d407b&amp;height=480&amp;lang=ru_RU&amp;scroll=true"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 footer__logo-wrapper">
+                    <a href="#">
+                        <img src="img/logo.png" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="footer__social">
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="39" height="39" viewBox="0 0 39 39">
+                                <image id="Vector_Smart_Object" data-name="Vector Smart Object" width="39" height="39" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAAnCAYAAACMo1E1AAACaklEQVRYhc1YgXHbMAx8ewKN4G7ATuCMkGygTlBngmiDeAN1A3cDXSaQN1A3UDIBerKBGCJBk1ISR3+Hs0xC5AMUAZArIsIMOAD3ALb8XBhDvAI4AngB8Jefp2EglykFEVVE1NE8dPx+kTtn0BCRHRH1itLwXBNRSUQu8o7j/tp4d2foBxI0eLIholYN3PGE2dbTxeul5/WWx7f0k+TulcXZ1k5chZ7nsfSi5MopFs4Qf0VKa4yggS0R1DOWcMpS12quwIPWN9YrYtagny1CsPdXyFcUV7df6DHLg3pek9wuZsENRK/YzidXWJ03Fu2cQpOrVBz7DmIiEgcrTU4azS19Qym1k4bEPyTulhP1D/7NxQZAybpbTu5vAP4A+DejoBgKiI5/f+oltUKHzolWPHoOes84GCHKQmvMKaGlWrPF4NLGKnt8/Fb/HwHsA42whHoKNOLjC4+t9o5VXZSGtQPuEjpNhtf8cUQc9/VQirEP36rf9OR3Qe94Weug94xnYy6Rd0IpcpZnSH17Vn91hThlZKBscjHvSbC0NkXDfbH3rE9oNrmYB/rIjqYr7Tmx9ITVidUZq2DfjHHgQ81HkZpnwInTWm1nF6iM8WtmYPVRBy1jCI/XtTqypcgNRjwErdNRJggKj+N6FPTSOLIHc7CPBFkkCF6Sgg56ie2dE14EkpbclY1BRnmmSzf3karEcciwcPD0YgSbiNEdfVI95/j9RomfljacKRpPfM+Z9dyiK2G/c1FnCJHFnr58C6zi8ysk+9yKJZ/4RRZ7V6I9uMhbppiFi7mfi1krFn/7zaZv/U3vhJd7mw7gP65VpP8FQIrSAAAAAElFTkSuQmCC" />
+                            </svg>
+                        </a>
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="39" height="39" viewBox="0 0 39 39">
+                                <image id="Vector_Smart_Object" data-name="Vector Smart Object" width="39" height="39" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAAnCAYAAACMo1E1AAACOklEQVRYhc1YgVHDMAz85hggI5QNwgSwAWECwgR0hDIBIwQ2gAmACdoN2g3SDcQZ5KtjS46ThuK/0yXn2PJLVizZCyLCBFQAagDX/F4KKg4AtgC+ALzx+zgYcolSEtGaiHY0DTseX6bOGTQosiKizqFk3lsiaoioUsZU/L0Vxq6E/oEEDZ4siWjjKN7xhMnW09Hrjef1DeuX+g+Sqx2Lk60duQodzyP1U8k1YyycIP6KNJKOoIEtsWgnLOGYpW6duQIPSjHWOcQkpXOLJdj5K+R3tK7e/KHHJA+684rkVpoFZxB3xVY+uVL6eGZxnVO65NbOPvYfxKzYfdDwgc2tOwBLAA8AXpT8dwPgnvtNhcmv7wA+lfENgBbAHsAlOM303CnIcmI+1aDFtBteVcHVBbhyOAS2/OIxaDkNmr4D8zCoCy57wKWNhkppn4qYPsvjGq4bBTdbSVmmj6A1DmmeXpiZH8JWm4vAhiOGKlI71oTIc+JPMzhfETSfBhMvVwCe5lA2t+dcmK3nI2iNj+nNN7fnwOeJ9QCxJFzMTKzhmJMOPKNROHtb7PceQsWeamcgZnkcCufIFiOnpRuLDcdYKmL6LI9t0dv0dIw/c8YR03dMCiNyaxfdUtMRqxd7ufWCrdjzxlkrVYn5fgfgdmD5h2D0vPJTQs0xu//hlXM9J7kzu0rY/6jFxF9J9AxhJdvTl29BdudW5Hzit5LtXYnrwSxvmTQLs7mf06y1Fv/7zaZv/VnvhPO9TQfwDQyJkbK81qJ0AAAAAElFTkSuQmCC" />
+                            </svg>
+                        </a>
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34" height="34" viewBox="0 0 34 34">
+                                <image id="clock_1_" data-name="clock (1)" width="34" height="34" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAiCAYAAAA6RwvCAAACR0lEQVRYhb1YgY3bMAy8ZoFqg3qDeoP3CB4hnaDpBukEGSG/QbuBvxPkO0F+A+cnYMEHWRA0ZUt2EAKEHYmkjqQsUvlERKigBKAH8BVAK79bUX+R5x8ArwB+1xgGAyngjoh+UR2NRHQmoqZkjaWIsLcnAJ0bfxHP9V0j81lkWyf/DOAHgNtkhYKIHJ3/VyLaE1EKZD03oj8afX7vA9kPngwIn52BfSBTwilw6BDpTQYciKEwAkvcSkSVjktATkb4vGBcU3CRjRzNW04iq7TPAeH8KZUY1q9JKZqfAzPaL8oKaeiuFemoBaJpGr3DOnkwBrtAOcdrgMBt4M4C0WgMgdIcrwVi1zwrkN6jexAQm4W0A/AkZ9ubqRePoGezRr8zx3ddkdpONymOTE87Uxf+PhbHB2kGmp0Z5NQ8mt4jIFspTUbKaTMQW9aHLWC2AuHN9k3eea9dgl6kyI4FssYA5DNUMI1EptTWF3neIKcpVRS6HO/NATVKTcnJ+tP1aM99Vo6Et4CZ61dbI9v7gbWdWA7MpAEyfDKA/xc9Tc81UFjDvaQ6l55kWoGTBWKLV9hT3pnt1aQh1xhpVEo32pZoTVJnBRiZhutyp6Y52qDhGnMb7d5gLIhJ1CMF/wnWNksRH5zNSeojJQ+Gau6wjjuz97Ig5oAguBQpoOy1UTiJI4PTHeacWbqEczU9APgeVNZXqb5vMpek1jROjud/utZwShG6jJecZ3tTWyI+K4pP6to/apjYY66uWmG5+ebIaKvJ7Z9Gq4wA/AMbf59CIggSUwAAAABJRU5ErkJggg==" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="footer__time white">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34" height="34" viewBox="0 0 34 34">
+                            <image id="clock_1_" data-name="clock (1)" width="34" height="34" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAiCAYAAAA6RwvCAAACR0lEQVRYhb1YgY3bMAy8ZoFqg3qDeoP3CB4hnaDpBukEGSG/QbuBvxPkO0F+A+cnYMEHWRA0ZUt2EAKEHYmkjqQsUvlERKigBKAH8BVAK79bUX+R5x8ArwB+1xgGAyngjoh+UR2NRHQmoqZkjaWIsLcnAJ0bfxHP9V0j81lkWyf/DOAHgNtkhYKIHJ3/VyLaE1EKZD03oj8afX7vA9kPngwIn52BfSBTwilw6BDpTQYciKEwAkvcSkSVjktATkb4vGBcU3CRjRzNW04iq7TPAeH8KZUY1q9JKZqfAzPaL8oKaeiuFemoBaJpGr3DOnkwBrtAOcdrgMBt4M4C0WgMgdIcrwVi1zwrkN6jexAQm4W0A/AkZ9ubqRePoGezRr8zx3ddkdpONymOTE87Uxf+PhbHB2kGmp0Z5NQ8mt4jIFspTUbKaTMQW9aHLWC2AuHN9k3eea9dgl6kyI4FssYA5DNUMI1EptTWF3neIKcpVRS6HO/NATVKTcnJ+tP1aM99Vo6Et4CZ61dbI9v7gbWdWA7MpAEyfDKA/xc9Tc81UFjDvaQ6l55kWoGTBWKLV9hT3pnt1aQh1xhpVEo32pZoTVJnBRiZhutyp6Y52qDhGnMb7d5gLIhJ1CMF/wnWNksRH5zNSeojJQ+Gau6wjjuz97Ig5oAguBQpoOy1UTiJI4PTHeacWbqEczU9APgeVNZXqb5vMpek1jROjud/utZwShG6jJecZ3tTWyI+K4pP6to/apjYY66uWmG5+ebIaKvJ7Z9Gq4wA/AMbf59CIggSUwAAAABJRU5ErkJggg==" />
+                        </svg>
+                        <p class="time__text">
+                            Время работы<br>
+                            <span>
+                                пн-пт 9:00 до 21:00
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="footer__numbers">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34" height="34" viewBox="0 0 34 34">
+                            <image id="telephone" width="34" height="34" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAiCAYAAAA6RwvCAAACcElEQVRYha1Yi3HbMAyFM4FG0AjaIOoE1QbRCM4G3kAj6DqB2wnUTOBskBGYDZBjC/ieQJCmpODunRV+H0B8yJyYmTZIR0Qv8ttnpv0lonci+iW/dRKJVODMzB+cSmDmRRCS3v9zxpo9kgaDwRCI3xMz985YRS9j7LzSnCKRySw0OGMeYTSEptz4pIGZGzG1ysUZsxUXWO8qezwkoiTimXdO/1504EfLIyJzgUQvmlU5XwZIZsoRiT6gYknMvJY5s1EtGZXBEmnAqc4FEjNodISM+syHJaIdNyd8VUZHoyNkVorbRhuiCw4GjA7BPaF9twpqfTeTQ8RLRnpkR8JbDdA9EdGz1ILfG2rOKNDasld0z5cnKWBR/jiLadH6CW0DEc3y/XqQiO7ZEZy1Zzp1zOB4fJKUduK+ec4/FDfjsC2Q93xnKwISKWmnzhygRlyg7WgZWGqJYPRcnTaPzLihHKyIBGcAooWMqkfUwLEFOKat5WDlIzln9RIQg6b2ynCDb1savDUb3LyUtCzwsoRmx/sG9iF5j0yvroGLZ29PBqgppv5WCFmFkEyu74y5ohTCJcu4N64Mea8c/COnf2jO31LARnDgIJt4hEoWucMO3mIVPQ501iDaD7Lp2fS1zhorImgVz3yP0BtCVnTta24dfOnFl9si3z92FrNOiqJW9E958cW1grSdklmUvvQmMON33uAJcozXlxAhc5Pf86jy0MKaXr9LhEyuyEVDLbAUeEmtSIRMtqx+TDuhqyF+KymUNBj05u2K4emFYpN5hBdJ1BBBzbCg1Uq1Jff8oyaGebzDtgKUGK7xnvsmIVuXAojoC0mWssxdtPAzAAAAAElFTkSuQmCC" />
+                        </svg>
+                        <div class="numbers__text white">
+                            <p>
+                                <span>Многоканальный</span>
+                                <a href="tel:89152843665">+7 (915) 284-36-65</a>
+                                <a href="tel:89152843685">+7 (915) 284-36-85</a>
+                                <a href="tel:84993482269">+7 (499) 348-22-69</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.nice-number.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/main.js"></script>
+
+</html>
